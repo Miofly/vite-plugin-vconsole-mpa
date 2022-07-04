@@ -1,8 +1,8 @@
 {
   "name": "vite-plugin-vconsole-mpa",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "vite plugin vconsole",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
