@@ -28,7 +28,7 @@ pnpm add vite-plugin-vconsole -D
 
 ### Examples
 
-- `see` [src/examples](https://github.com/Miofly/vite-plugin-vconsole-mpa/tree/master/example/vue-plugin-demo)
+- `see` [src/examples](https://github.com/Miofly/vite-plugin-vconsole-mpa/tree/master/example/vite-plugin-demo)
 
 ## Options
 
