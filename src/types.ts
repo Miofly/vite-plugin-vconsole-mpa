@@ -1,17 +1,21 @@
 export interface viteVConsoleOptions {
   /**
-   * 多页面页面入口
-   * option: string (default: src/pages)
+   * multi page page entry
+   * @default: src/pages
    */
   pageDir?: string;
   /**
-   * 单页面无需配置
-   * 多页面：true(pageDir下所有页面都开启) | test-one | ['test-one', 'test-twos']
+   * single page without configuration
+   * @example multi page：true(pageDir all pages open) | test-one | ['test-one', 'test-twos']
    */
   entry?: string[] | string | boolean;
-  /** 是否开启 */
+  /**
+   * open or not
+   */
   enabled?: boolean;
-  /** vconsole 配置 */
+  /**
+   * vconsole configuration
+   */
   config?: voption;
 }
 

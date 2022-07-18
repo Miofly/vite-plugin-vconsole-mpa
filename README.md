@@ -1,52 +1,106 @@
 # vite-plugin-vconsole
 
-> vite2 plugin for vconsole
->
-> A plug-in for vite2 that loads single page and multi page 'vconsole' configurations
+> A 'vconsole' plugin that supports single and multiple pages
 
-## install (yarn or pnpm)
+## INSTALL
 
 **node version:** >=12.0.0
 
 **vite version:** >=2.0.0
 
 ```bash
-yarn add vite-plugin-vconsole -D
+yarn add vite-plugin-vconsole-mpa -D
 # or
-pnpm add vite-plugin-vconsole -D
+pnpm add vite-plugin-vconsole-mpa -D
 ```
 
-## singlePage
+## How to use
 
-Default entry `srcmain Ts`, no configuration required
+singlePage
 
-### Examples
+```typescript
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import viteVConsole from 'vite-plugin-vconsole-mpa';
 
-- `see` [src/examples](https://github.com/Miofly/vite-plugin-vconsole-mpa/tree/master/example/vue-single-page)
+export default defineConfig({
+  server: {
+    open: true
+  },
+  plugins: [
+    vue(),
+    viteVConsole({
+      enabled: true
+    })
+  ]
+});
+```
 
-## multiPage
+multiPage
 
-### Examples
+```typescript
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import viteVConsole from 'vite-plugin-vconsole-mpa';
+import mpa from 'vite-plugin-multi-pages';
+import htmlTemplate from 'vite-plugin-html-template-mpa';
 
-- `see` [src/examples](https://github.com/Miofly/vite-plugin-vconsole-mpa/tree/master/example/vite-plugin-demo)
+export default defineConfig({
+  server: {
+    open: true
+  },
+  plugins: [
+    vue(),
+    mpa(),
+    htmlTemplate(),
+    viteVConsole({
+      enabled: true,
+      entry: ['test-one']
+    })
+  ]
+});
+```
 
-## Options
+## configuration parameter
 
 ```typescript
 export interface viteVConsoleOptions {
   /**
-   * multiPage PageEntry
-   * option: string (default: src/pages)
+   * multi page entry directory
+   * @default: src/pages
    */
   pageDir?: string;
   /**
-   * single page without configuration
-   * Multi page：true(All pages under page dir are opened) | test-one | ['test-one', 'test-twos']
+   * entry file
+   * @example 
+   * single page：No setting required (default main.ts)
+   * multi page：true(all pages under pagedir will open) | test-one（open only test-one） | ['test-one', 'test-twos'] (open the configuration page in the array)
    */
   entry?: string[] | string | boolean;
-  /** openOrNot */
+  /**
+   * open or not
+   */
   enabled?: boolean;
-  /** vconsole toConfigure */
+  /**
+   * vconsole ToConfigure
+   */
   config?: voption;
 }
 ```
+
+## Example
+
+single page
+
+- `see` [src/examples](https://github.com/Miofly/vite-plugin-vconsole-mpa/tree/master/examples/vite-plugin-demo-spa)
+
+multi page
+
+- `see` [src/examples](https://github.com/Miofly/vite-plugin-vconsole-mpa/tree/master/examples/vite-plugin-demo-mpa)
+
+## More
+
+- Cooperate with `vite-plugin-multi-pages` multi page application
+  configuration: [https://github.com/Miofly/vite-plugin-multi-pages](https://github.com/Miofly/vite-plugin-multi-pages)
+- Coordination `vite-plugin-html-template-mpa` index.html template
+  plugin : [https://github.com/Miofly/vite-plugin-html-template-mpa](https://github.com/Miofly/vite-plugin-html-template-mpa)
