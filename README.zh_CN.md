@@ -1,5 +1,7 @@
 # vite-plugin-vconsole
 
+**中文** | [English](./README.md)
+
 > 一个支持 单/多 页面的 `vconsole` 插件
 
 ## 安装
