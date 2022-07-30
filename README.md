@@ -104,5 +104,5 @@ multi page
 
 - Cooperate with `vite-plugin-multi-pages` multi page application
   configuration: [https://github.com/Miofly/vite-plugin-multi-pages](https://github.com/Miofly/vite-plugin-multi-pages)
-- Coordination `vite-plugin-html-template-mpa` index.html template
+- Cooperate `vite-plugin-html-template-mpa` index.html template
   plugin : [https://github.com/Miofly/vite-plugin-html-template-mpa](https://github.com/Miofly/vite-plugin-html-template-mpa)

@@ -13,8 +13,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.1",
     "typescript": "^4.7.4",
-    "vite": "3.0.1",
-    "vite-plugin-multi-pages": "0.0.7",
+    "vite": "3.0.2",
+    "vite-plugin-multi-pages": "0.0.8",
     "vite-plugin-html-template-mpa": "^0.0.6"
   }
 }
