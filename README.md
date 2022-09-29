@@ -74,7 +74,7 @@ export interface viteVConsoleOptions {
   pageDir?: string;
   /**
    * entry file
-   * @example 
+   * @example
    * single page：No setting required (default main.ts)
    * multi page：true(all pages under pagedir will open) | test-one（open only test-one） | ['test-one', 'test-twos'] (open the configuration page in the array)
    */

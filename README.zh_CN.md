@@ -19,6 +19,7 @@ pnpm add vite-plugin-vconsole-mpa -D
 ## 如何使用
 
 单页面
+
 ```typescript
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -73,7 +74,7 @@ export interface viteVConsoleOptions {
   pageDir?: string;
   /**
    * 入口文件
-   * @example 
+   * @example
    * 单页面：无需设置（默认 main.ts）
    * 多页面：true(所有 pageDir 下的页面都会开启) | test-one（只开启 test-one） | ['test-one', 'test-twos'] (开启数组中的配置页面)
    */

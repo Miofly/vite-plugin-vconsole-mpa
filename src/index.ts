@@ -1,11 +1,11 @@
 import type { viteVConsoleOptions } from './types';
-import type { Plugin } from 'vite';
+import type { PluginOption } from 'vite';
 
 import { ResolvedConfig } from 'vite';
 
-export default function viteVConsole(opt: viteVConsoleOptions): Plugin {
+export default function viteVConsole(opt: viteVConsoleOptions): PluginOption {
   let viteConfig: ResolvedConfig;
-  const { enabled = true, config = {}, entry = true, pageDir='src/pages' } = opt;
+  const { enabled = true, config = {}, entry = true, pageDir = 'src/pages' } = opt;
 
   return {
     name: 'vite:vconsole',
@@ -15,13 +15,13 @@ export default function viteVConsole(opt: viteVConsoleOptions): Plugin {
     },
     transform(_source: string, id: string) {
       const pages: any = viteConfig.build.rollupOptions.input;
-      
+
       let _entryPath = [];
-  
+
       const isMPA =
         typeof viteConfig.build.rollupOptions.input !== 'string' &&
         Object.keys(viteConfig.build.rollupOptions.input || {}).length > 0;
-      
+
       if (isMPA) {
         if (typeof entry === 'boolean' && entry) {
           for (const key in pages) {
@@ -41,7 +41,7 @@ export default function viteVConsole(opt: viteVConsoleOptions): Plugin {
           _entryPath = [id];
         }
       }
-      
+
       if (String(_entryPath).replace(/\\/g, '/').split(',').includes(id) && enabled) {
         // build prod
         return {
