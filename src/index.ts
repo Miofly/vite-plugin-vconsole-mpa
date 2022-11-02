@@ -1,7 +1,7 @@
 import type { viteVConsoleOptions } from './types';
 import type { PluginOption } from 'vite';
 
-import { ResolvedConfig } from 'vite';
+import { type ResolvedConfig } from 'vite';
 
 export default function viteVConsole(opt: viteVConsoleOptions): PluginOption {
   let viteConfig: ResolvedConfig;
@@ -16,11 +16,9 @@ export default function viteVConsole(opt: viteVConsoleOptions): PluginOption {
     transform(_source: string, id: string) {
       const pages: any = viteConfig.build.rollupOptions.input;
 
-      let _entryPath = [];
+      let _entryPath: string[] = [];
 
-      const isMPA =
-        typeof viteConfig.build.rollupOptions.input !== 'string' &&
-        Object.keys(viteConfig.build.rollupOptions.input || {}).length > 0;
+      const isMPA = typeof viteConfig.build.rollupOptions.input !== 'string' && Object.keys(viteConfig.build.rollupOptions.input || {}).length > 0;
 
       if (isMPA) {
         if (typeof entry === 'boolean' && entry) {
@@ -45,9 +43,7 @@ export default function viteVConsole(opt: viteVConsoleOptions): PluginOption {
       if (String(_entryPath).replace(/\\/g, '/').split(',').includes(id) && enabled) {
         // build prod
         return {
-          code: `/* eslint-disable */;import VConsole from 'vconsole';new VConsole(${JSON.stringify(
-            config
-          )});/* eslint-enable */${_source}`,
+          code: `/* eslint-disable */;import VConsole from 'vconsole';new VConsole(${JSON.stringify(config)});/* eslint-enable */${_source}`,
           map: null // support source map
         };
       }
