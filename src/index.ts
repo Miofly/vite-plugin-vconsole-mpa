@@ -18,7 +18,9 @@ export default function viteVConsole(opt: viteVConsoleOptions): PluginOption {
 
       let _entryPath: string[] = [];
 
-      const isMPA = typeof viteConfig.build.rollupOptions.input !== 'string' && Object.keys(viteConfig.build.rollupOptions.input || {}).length > 0;
+      const isMPA =
+        typeof viteConfig.build.rollupOptions.input !== 'string' &&
+        Object.keys(viteConfig.build.rollupOptions.input || {}).length > 0;
 
       if (isMPA) {
         if (typeof entry === 'boolean' && entry) {
@@ -43,7 +45,9 @@ export default function viteVConsole(opt: viteVConsoleOptions): PluginOption {
       if (String(_entryPath).replace(/\\/g, '/').split(',').includes(id) && enabled) {
         // build prod
         return {
-          code: `/* eslint-disable */;import VConsole from 'vconsole';new VConsole(${JSON.stringify(config)});/* eslint-enable */${_source}`,
+          code: `/* eslint-disable */;import VConsole from 'vconsole';new VConsole(${JSON.stringify(
+            config
+          )});/* eslint-enable */${_source}`,
           map: null // support source map
         };
       }
