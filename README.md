@@ -31,9 +31,41 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    // by default no configuration is required
+    // viteVConsole({}),
+    
+    // custom configuration
     viteVConsole({
-      enabled: true
-    })
+      enabled: true,
+      config: {
+        theme: 'dark',
+        onReady() {
+          console.log('init');
+        },
+      },
+      // Customize the rule so that it triggers a destroy, as shown below, and do not show vConsole for PC mode
+      customHide: `/Windows|Macintosh|Linux/i.test(navigator.userAgent)`,
+      plugin: [
+        {
+          id: 'custom_plugin',
+          name: 'CustomPlugin',
+          event: [
+            {
+              eventName: 'init',
+              callback: function () {
+                console.log('My plugin init');
+              },
+            },
+            {
+              eventName: 'renderTab',
+              callback: function () {
+                console.log('My plugin renderTab');
+              },
+            },
+          ],
+        },
+      ],
+    }),
   ]
 });
 ```
@@ -55,10 +87,13 @@ export default defineConfig({
     vue(),
     mpa(),
     htmlTemplate(),
+    // by default no configuration is required
+    // viteVConsole({}),
+
     viteVConsole({
-      enabled: true,
+      pageDir: 'src/pages',
       entry: ['test-one']
-    })
+    }),
   ]
 });
 ```
@@ -68,25 +103,44 @@ export default defineConfig({
 ```typescript
 export interface viteVConsoleOptions {
   /**
-   * multi page entry directory
-   * @default: src/pages
+   * multi page page entry
+   * @default: src/views
    */
   pageDir?: string;
   /**
-   * entry file
-   * @example
-   * single page：No setting required (default main.ts)
-   * multi page：true(all pages under pagedir will open) | test-one（open only test-one） | ['test-one', 'test-twos'] (open the configuration page in the array)
+   * single page without configuration
+   * @example multi page：true(pageDir all pages open) | test-one | ['test-one', 'test-twos']
    */
   entry?: string[] | string | boolean;
+  /**
+   * entry file
+   * @default: main.ts
+   */
+  entryFileName?: string;
   /**
    * open or not
    */
   enabled?: boolean;
   /**
-   * vconsole ToConfigure
+   * vconsole configuration
    */
-  config?: voption;
+  config?: ConsoleProps;
+  /**
+   * custom hide rule code string
+   * A runnable code snippet that triggers some APIs on the browser side
+   */
+  customHide?: string;
+  /**
+   * custom plugin
+   */
+  plugin?: {
+    id: string;
+    name: string;
+    event: {
+      eventName: string;
+      callback: (data?: any) => void;
+    }[];
+  }[];
 }
 ```
 

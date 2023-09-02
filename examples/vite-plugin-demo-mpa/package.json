@@ -1,20 +1,14 @@
 {
-  "name": "vite-project",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vite-mpa-demo",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "vue": "^3.2.39"
+    "build": "vite build"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^3.1.0",
-    "typescript": "^4.8.3",
-    "vite": "3.1.1",
     "vite-plugin-multi-pages": "0.0.10",
-    "vite-plugin-html-template-mpa": "^0.0.19"
+    "vite-plugin-html-template-mpa": "0.0.19",
+    "vue": "3.0.0",
+    "vconsole": "3.0.0",
+    "@vitejs/plugin-vue": "4.0.0"
   }
 }

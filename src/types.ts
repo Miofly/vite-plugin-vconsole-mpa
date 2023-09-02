@@ -1,7 +1,7 @@
-export interface viteVConsoleOptions {
+export interface ViteVConsoleOptions {
   /**
    * multi page page entry
-   * @default: src/pages
+   * @default: src/views
    */
   pageDir?: string;
   /**
@@ -10,16 +10,37 @@ export interface viteVConsoleOptions {
    */
   entry?: string[] | string | boolean;
   /**
+   * entry file
+   * @default: main.ts
+   */
+  entryFileName?: string;
+  /**
    * open or not
    */
   enabled?: boolean;
   /**
    * vconsole configuration
    */
-  config?: voption;
+  config?: ConsoleProps;
+  /**
+   * custom hide rule code string
+   * A runnable code snippet that triggers some APIs on the browser side
+   */
+  customHide?: string;
+  /**
+   * custom plugin
+   */
+  plugin?: {
+    id: string;
+    name: string;
+    event: {
+      eventName: string;
+      callback: (data?: any) => void;
+    }[];
+  }[];
 }
 
-export interface voption {
+export interface ConsoleProps {
   defaultPlugins?: string[];
   onReady?: () => void;
   onClearLog?: () => void;

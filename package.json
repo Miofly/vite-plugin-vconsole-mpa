@@ -2,29 +2,48 @@
   "name": "vite-plugin-vconsole-mpa",
   "version": "0.0.5",
   "description": "vite plugin vconsole",
-  "main": "src/index.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && tsup src/index.ts --dts --format cjs,esm",
-    "pub": "npm version patch && pnpm build && npm publish --no-git-checks",
-    "git": "git commit -m 'docs: update mess' && git push"
-  },
   "keywords": [
     "vite",
+    "vite-plugin",
     "vconsole",
     "mpa"
   ],
-  "author": "953212389@qq.com",
   "license": "MIT",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "main": "dist/index.js"
+  },
+  "scripts": {
+    "stub": "unbuild --stub",
+    "dev": "pnpm stub",
+    "build": "pnpm clean:dist && pnpm -F @vft/script test",
+    "pub": "pnpm build &&  tsx ../../scripts/build/src/publish.ts --pkg vite-plugin/vite-plugin-vconsole-mpa",
+    "clean": "pnpm /^clean:/",
+    "clean:dist": "rimraf dist",
+    "clean:node_modules": "rimraf node_modules"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "wfly",
+    "url": "https://github.com/Miofly",
+    "email": "953212389@qq.com"
+  },
+  "peerDependencies": {
+    "vite": "^2.0.0 || ^3.0.0 || ^4.0.0"
+  },
   "devDependencies": {
-    "rimraf": "^3.0.2",
-    "tsup": "6.2.3",
-    "typescript": "^4.8.4",
-    "vconsole": "^3.14.7",
-    "vite": "^3.1.7"
+    "rimraf": "^3.0.2"
   },
   "homepage": "https://github.com/Miofly/vite-plugin-vconsole-mpa",
   "repository": {

@@ -31,9 +31,42 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    // 默认无需任何配置
+    // viteVConsole({}),
+
+    // 自定义配置
     viteVConsole({
-      enabled: true
-    })
+      enabled: true,
+      config: {
+        theme: 'dark',
+        onReady() {
+          console.log('init');
+        },
+      },
+      // 自定义规则使其触发销毁,如下，为 PC 模式则不展示 vConsole
+      customHide: `/Windows|Macintosh|Linux/i.test(navigator.userAgent)`,
+      // 自定义 vconsole 触发前置插件
+      plugin: [
+        {
+          id: 'custom_plugin',
+          name: 'CustomPlugin',
+          event: [
+            {
+              eventName: 'init',
+              callback: function () {
+                console.log('My plugin init');
+              },
+            },
+            {
+              eventName: 'renderTab',
+              callback: function () {
+                console.log('My plugin renderTab');
+              },
+            },
+          ],
+        },
+      ],
+    }),
   ]
 });
 ```
@@ -55,10 +88,13 @@ export default defineConfig({
     vue(),
     mpa(),
     htmlTemplate(),
+    // 默认无需任何配置
+    // viteVConsole({}),
+
     viteVConsole({
-      enabled: true,
+      pageDir: 'src/pages',
       entry: ['test-one']
-    })
+    }),
   ]
 });
 ```
@@ -69,16 +105,21 @@ export default defineConfig({
 export interface viteVConsoleOptions {
   /**
    * 多页面入口目录
-   * @default: src/pages
+   * @default: src/views
    */
   pageDir?: string;
   /**
    * 入口文件
    * @example
-   * 单页面：无需设置（默认 main.ts）
+   * 单页面：无需设置
    * 多页面：true(所有 pageDir 下的页面都会开启) | test-one（只开启 test-one） | ['test-one', 'test-twos'] (开启数组中的配置页面)
    */
   entry?: string[] | string | boolean;
+  /**
+   * 入口文件名称
+   * @default: main.ts
+   */
+  entryFileName?: string;
   /**
    * 是否开启
    */
@@ -87,6 +128,21 @@ export interface viteVConsoleOptions {
    * vconsole 配置
    */
   config?: voption;
+  /**
+   * 自定义隐藏规则代码字符串
+   */
+  customHide?: string;
+  /**
+   * 自定义插件
+   */
+  plugin?: {
+    id: string;
+    name: string;
+    event: {
+      eventName: string;
+      callback: (data?: any) => void;
+    }[];
+  }[];
 }
 ```
 

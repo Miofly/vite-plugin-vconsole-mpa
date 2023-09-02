@@ -6,15 +6,15 @@ import htmlTemplate from 'vite-plugin-html-template-mpa';
 
 export default defineConfig({
   server: {
-    open: true
+    open: true,
   },
   plugins: [
     vue(),
     mpa(),
     htmlTemplate(),
+    // 默认 pages 下都自动开启
     viteVConsole({
-      enabled: true,
-      entry: ['test-one']
-    })
-  ]
+      pageDir: 'src/pages',
+    }),
+  ],
 });
