@@ -46,6 +46,7 @@
     "typescript": ">=4.0.0"
   },
   "devDependencies": {
+    "unbuild": "2.0.0",
     "@vft/tsconfig": "*"
   },
   "homepage": "https://github.com/Miofly/vite-plugin-vconsole-mpa",
