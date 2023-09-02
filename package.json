@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-vconsole-mpa",
-  "version": "0.0.9",
+  "version": "0.0.6",
   "description": "vite plugin vconsole",
   "keywords": [
     "vite",
