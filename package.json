@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-vconsole-mpa",
-  "version": "0.0.6",
+  "version": "0.0.5",
   "description": "vite plugin vconsole",
   "keywords": [
     "vite",
@@ -20,7 +20,9 @@
     }
   },
   "publishConfig": {
-    "main": "dist/index.js"
+    "main": "dist/index.js",
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "scripts": {
     "stub": "unbuild --stub",
