@@ -27,7 +27,7 @@ import viteVConsole from 'vite-plugin-vconsole-mpa';
 
 export default defineConfig({
   server: {
-    open: true
+    open: true,
   },
   plugins: [
     vue(),
@@ -67,7 +67,7 @@ export default defineConfig({
         },
       ],
     }),
-  ]
+  ],
 });
 ```
 
@@ -82,7 +82,7 @@ import htmlTemplate from 'vite-plugin-html-template-mpa';
 
 export default defineConfig({
   server: {
-    open: true
+    open: true,
   },
   plugins: [
     vue(),
@@ -93,9 +93,9 @@ export default defineConfig({
 
     viteVConsole({
       pageDir: 'src/pages',
-      entry: ['test-one']
+      entry: ['test-one'],
     }),
-  ]
+  ],
 });
 ```
 
