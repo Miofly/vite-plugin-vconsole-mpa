@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "unbuild": "2.0.0",
-    "@vft/tsconfig": "*"
+    "@vft/tsconfig": "latest"
   },
   "homepage": "https://github.com/Miofly/vite-plugin-vconsole-mpa",
   "repository": {
