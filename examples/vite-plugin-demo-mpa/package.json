@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "vite-plugin-multi-pages": "0.0.10",
-    "vite-plugin-html-template-mpa": "0.0.19",
+    "vite-plugin-html-template-mpa": "workspace:*",
     "vue": "3.0.0",
     "vconsole": "3.0.0",
     "@vitejs/plugin-vue": "4.0.0"
