@@ -5,7 +5,7 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "vue": "3.4.15",
+    "vue": "3.4.19",
     "@vitejs/plugin-vue": "4.0.0",
     "vconsole": "3.0.0"
   }
